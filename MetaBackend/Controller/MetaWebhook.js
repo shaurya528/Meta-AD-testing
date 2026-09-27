@@ -1,3 +1,5 @@
+import { ProcessLeads } from "../Services/ProcessLead.js";
+
 export const WebhookGet=  (req,res)=>{
     const Mode = req.query['hub.mode'];
     const token = req.query['hub.verify_token'];
@@ -30,7 +32,7 @@ export const WebhookGet=  (req,res)=>{
   for (const entry of body.entry ?? []) {
     for (const change of entry.changes ?? []) {
       if (change.field === 'leadgen') {
-       console.log("leadgen is  grabbed")
+        ProcessLeads(change.value)
       }
     }
 }
