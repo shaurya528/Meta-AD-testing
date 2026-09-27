@@ -1,9 +1,9 @@
 import { FetchLeads } from "./FetchLead.js";
 import { FlattenField } from "./Flatten.js";
-const leads = [];
+import { leads } from "../Server.js";
 const seenLeadIds = new Set();
 
-export const ProcessLeads=async(value)=>{
+export const ProcessLeads=async(value,io)=>{
     const id = value.leadgen_id;
     if (!id || seenLeadIds.has(id)) return;
     seenLeadIds.add(id);
@@ -19,5 +19,11 @@ export const ProcessLeads=async(value)=>{
 
     
       leads.unshift(lead);
+      if (io) {
+        io.emit('new_lead', lead);
+        console.log('Lead successfully emitted through socket:', lead.id);
+      } else {
+        console.warn('Socket.io instance error');
+      }
      
 }

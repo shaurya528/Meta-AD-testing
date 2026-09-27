@@ -32,7 +32,7 @@ export const WebhookGet=  (req,res)=>{
   for (const entry of body.entry ?? []) {
     for (const change of entry.changes ?? []) {
       if (change.field === 'leadgen') {
-        ProcessLeads(change.value)
+        ProcessLeads(change.value,req.io)
       }
     }
 }
