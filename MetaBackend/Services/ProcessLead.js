@@ -1,6 +1,6 @@
 import { FetchLeads } from "./FetchLead.js";
 import { FlattenField } from "./Flatten.js";
-import { leads } from "../Server.js";
+import { leads } from '../Data/LeadsData.js'
 const seenLeadIds = new Set();
 
 export const ProcessLeads=async(value,io)=>{

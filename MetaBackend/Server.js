@@ -1,4 +1,5 @@
 import express from 'express' 
+import { leads } from './Data/LeadsData.js';
 import AllRoutes from './Routes/DefineRoutes.js'
 import http from 'http'
 import { Server } from 'socket.io';
@@ -8,7 +9,7 @@ const app=express();
 const server = http.createServer(app);
 app.use(express.json())
 
- export const leads = [];
+
 
 const PORT=3008;
 
